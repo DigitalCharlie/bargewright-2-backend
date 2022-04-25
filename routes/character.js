@@ -30,5 +30,8 @@ router.put('/:id/edit', charCtrl.update)
 // SHOW
 router.get('/:id', charCtrl.show)
 
+// ALL Adventures
+router.get('/:id/adventure/all', charCtrl.getAllAdv)
+
 
 module.exports = router;

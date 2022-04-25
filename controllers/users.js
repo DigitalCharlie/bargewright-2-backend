@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const Character = require('../models/Character')
+const Adventure = require('../models/Adventure')
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
@@ -79,3 +80,5 @@ async function getAllChars(req,res) {
 		res.status(400).json(e);
 	}
 }
+
+// DELETE — and also delete characters and adventures.

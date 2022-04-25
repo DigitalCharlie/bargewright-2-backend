@@ -4,7 +4,8 @@ module.exports = {
 	createNew,
 	test,
 	update,
-	show
+	show,
+	deleteAdv
 };
 
 async function createNew (req,res) {
@@ -38,6 +39,17 @@ async function test (req,res) {
     try {
         res.send('test success')
     } catch (err) {
+        res.status(400).json(err)
+    }
+}
+
+// DELETE ADVENTURE
+
+async function deleteAdv (req,res) {
+	try {
+		const deletedAdv = await Adventure.findByIdAndDelete(req.params.id)
+		res.status(200).json(deletedAdv);
+	} catch (err) {
         res.status(400).json(err)
     }
 }

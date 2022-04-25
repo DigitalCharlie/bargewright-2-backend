@@ -1,10 +1,13 @@
 const Character = require('../models/Character')
+const Adventure = require('../models/Adventure')
+
 
 module.exports = {
 	createNew,
 	show,
-	test,
-	update
+	update,
+	getAllAdv,
+	test
 };
 
 async function createNew (req,res) {
@@ -34,6 +37,18 @@ async function update (req,res) {
 	}
 }
 
+// GET ALL ADVENTURES
+
+async function getAllAdv(req,res) {
+	try {
+		const allAdv = await Adventure.find({character: req.params.id});
+		res.status(200).json(allAdv);
+	} catch (e) {
+		res.status(400).json(e);
+	}
+}
+
+// TEST
 async function test (req,res) {
     try {
         res.send('test success')

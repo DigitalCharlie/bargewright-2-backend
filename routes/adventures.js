@@ -21,6 +21,8 @@ router.post('/new', advCtrl.createNew);
 // /user/:username/character/:character._id/adventure/adventure._id
 
 // DELETE
+router.delete('/:id', advCtrl.deleteAdv)
+
 
 // UPDATE
 router.put('/:id/edit', advCtrl.update)
