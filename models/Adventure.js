@@ -5,14 +5,10 @@ const advSchema = new Schema({
     character: String,
     adventureName: {
         type: String,
-        required: true,
-        max: 64
-    },
-    adventureCode: String,
-    datePlayed: {
-        type: Date,
         required: true
     },
+    adventureCode: String,
+    datePlayed: Date,
     dungeonMaster: String,
     goldFound: Number,
     downtimeEarned: Number,
