@@ -1,16 +1,24 @@
-// /user/:username/character/:character._id/adventures
+// /user/:username/character/:character._id/adventure
 
 // DEPENDNCIES
 const express = require('express');
 const router = express.Router();
 const ensureLoggedIn = require('../config/ensureLoggedIn');
+const advCtrl = require('../controllers/characters')
+
 
 // INDEX (may not have this since it's on the character page)
 
+// TEST
+// router.get('/', advCtrl.test);
+
 // CREATE
 
+router.post('/new', advCtrl.createNew);
+
+
 // SPECIFIC ADVENTURE ROUTES
-// /user/:username/character/:character._id/adventures/adventure._id
+// /user/:username/character/:character._id/adventure/adventure._id
 
 // DELETE
 
