@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const Character = require('../models/Character')
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
@@ -6,13 +7,18 @@ module.exports = {
   create,
   login,
   checkToken,
-  testDb
+  testDb,
+  getAllChars
 };
+
+// AUTH
 
 function checkToken(req, res) {
   console.log('req.user', req.user);
   res.status(200).json(req.exp);
 }
+
+// USER CREATION AND LOGIN
 
 async function login(req, res) {
   try {
@@ -40,6 +46,8 @@ async function create(req, res) {
   }
 }
 
+// TEST
+
 async function testDb (req,res) {
     try {
         res.send('test success')
@@ -58,4 +66,16 @@ function createJWT(user) {
     process.env.SECRET,
     { expiresIn: '24h' }
   );
+}
+
+
+// USER INFO FUNCTIONS
+
+async function getAllChars(req,res) {
+	try {
+		const allChars = await Character.find({player: req.params.username});
+		res.status(200).json(allChars);
+	} catch (e) {
+		res.status(400).json(e);
+	}
 }

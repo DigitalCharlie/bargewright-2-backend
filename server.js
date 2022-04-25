@@ -12,6 +12,7 @@ app.use(require('./config/checkToken'));
 
 // ROUTING
 app.use('/', require('./routes/home'));
+app.use('/user/', require('./routes/user'));
 app.use('/user/:username/character', require('./routes/character'));
 
 

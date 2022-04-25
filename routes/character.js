@@ -6,6 +6,9 @@ const router = express.Router();
 const ensureLoggedIn = require('../config/ensureLoggedIn');
 const charCtrl = require('../controllers/characters')
 
+// DON'T WANT THIS TO STAY BUT USEFUL FOR TESTING
+// const Character = require('../models/Character')
+
 // TEST
 // router.get('/', charCtrl.test);
 
@@ -19,8 +22,10 @@ router.post('/new', charCtrl.createNew);
 
 // DELETE
 
+
 // UPDATE
 router.put('/:id/edit', charCtrl.update)
+
 
 // SHOW
 router.get('/:id', charCtrl.show)

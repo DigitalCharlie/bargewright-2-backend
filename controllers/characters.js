@@ -27,7 +27,7 @@ async function show (req,res) {
 
 async function update (req,res) {
 	try {
-		const char = await Character.findByIdAndUpdate(req.params.id);
+		const char = await Character.findByIdAndUpdate(req.params.id, req.body);
 		res.status(200).json(char);
 	} catch (e) {
 		res.status(400).json(e);
