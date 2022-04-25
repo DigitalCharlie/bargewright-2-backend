@@ -9,7 +9,8 @@ module.exports = {
   login,
   checkToken,
   testDb,
-  getAllChars
+  getAllChars,
+  deleteUser
 };
 
 // AUTH
@@ -82,3 +83,21 @@ async function getAllChars(req,res) {
 }
 
 // DELETE — and also delete characters and adventures.
+// also deletes the associated characters and adventures
+// this isn't actually working vv it's only deleting the user. if i comment out the user delete, it does delete the characters.
+
+async function deleteUser (req,res) {
+	try {
+    const userCharacters = await Character.find({player:req.params.username})
+    userCharacters.forEach(character => {
+      const deletedAdventures = Adventure.deleteMany({character: character._id})
+    })
+    const deletedCharacters = await Character.deleteMany({player: req.params.username})
+    console.log(deletedCharacters)
+    const user = await User.findOne({username: req.params.username})
+		const deletedUser = await User.findByIdAndDelete(user._id)
+		res.status(200).json(deletedUser);
+	} catch (err) {
+        res.status(400).json(err)
+    }
+}

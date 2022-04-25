@@ -7,6 +7,7 @@ module.exports = {
 	show,
 	update,
 	getAllAdv,
+	deleteChar,
 	test
 };
 
@@ -48,6 +49,20 @@ async function getAllAdv(req,res) {
 	}
 }
 
+// DELETE CHAR
+// also deletes the associated adventures
+
+async function deleteChar (req,res) {
+	try {
+		const deletedAdventures = await Adventure.deleteMany({character: req.params.id})
+		console.log(deletedAdventures)
+		const deletedChar = await Character.findByIdAndDelete(req.params.id)
+		res.status(200).json(deletedChar);
+	} catch (err) {
+        res.status(400).json(err)
+    }
+}
+
 // TEST
 async function test (req,res) {
     try {
@@ -56,3 +71,4 @@ async function test (req,res) {
         res.status(400).json(err)
     }
 }
+

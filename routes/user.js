@@ -8,6 +8,7 @@ const usersCtrl = require('../controllers/users');
 // UPDATE
 
 // DELETE
+router.delete('/:username', usersCtrl.deleteUser)
 
 // SHOW
 

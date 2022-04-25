@@ -21,6 +21,7 @@ router.post('/new', charCtrl.createNew);
 // /user/:username/character/character._id
 
 // DELETE
+router.delete('/:id', charCtrl.deleteChar)
 
 
 // UPDATE
