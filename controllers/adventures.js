@@ -1,4 +1,5 @@
 const Adventure = require('../models/Adventure')
+const Character = require('../models/Character')
 
 module.exports = {
 	createNew,
@@ -11,6 +12,7 @@ module.exports = {
 async function createNew (req,res) {
 	try {
 		const newAdv = await Adventure.create(req.body);
+		addAdvToChar(newAdv)
 		res.status(200).json(newAdv);
 	} catch (e) {
 		res.status(400).json(e);
@@ -52,4 +54,13 @@ async function deleteAdv (req,res) {
 	} catch (err) {
         res.status(400).json(err)
     }
+}
+
+
+// Add a new adventure to a character
+
+async function addAdvToChar (createdAdv) {
+	const char = await Character.findById(createdAdv.character)
+	char.adventures.push(createdAdv._id)
+	char.save()
 }

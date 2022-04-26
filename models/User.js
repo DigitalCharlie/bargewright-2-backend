@@ -18,7 +18,11 @@ const userSchema = new Schema({
     trim: true,
     minLength: 3,
     required: true
-  }
+  },
+  characters: [{
+    type:Schema.Types.ObjectId, 
+    ref:'Character'
+  }]  
 }, {
   timestamps: true,
   toJSON: {

@@ -88,16 +88,31 @@ async function getAllChars(req,res) {
 
 async function deleteUser (req,res) {
 	try {
-    const userCharacters = await Character.find({player:req.params.username})
-    userCharacters.forEach(character => {
-      const deletedAdventures = Adventure.deleteMany({character: character._id})
-    })
-    const deletedCharacters = await Character.deleteMany({player: req.params.username})
-    console.log(deletedCharacters)
-    const user = await User.findOne({username: req.params.username})
-		const deletedUser = await User.findByIdAndDelete(user._id)
+    await deleteCharAdv(req.params.username)
+    await Character.deleteMany({player: req.params.username})
+    const deletedUser = await deleteActualUser(req)
 		res.status(200).json(deletedUser);
 	} catch (err) {
         res.status(400).json(err)
     }
+}
+
+async function deleteActualUser (req) {
+  const user = await User.findOne({username: req.params.username})
+  const deletedUser = await User.findByIdAndDelete(user._id)
+  return deletedUser
+}
+
+// THIS IS NOT DOING ANYTHING CURRENTLY
+// async function deleteCharAdv (username) {
+//     const userCharacters = await Character.find({player:username})
+//     await userCharacters.forEach( async (character) => {
+//       const deletedAdventures = await Adventure.deleteMany({character: character._id})
+//     })
+// }
+
+// ALSO DOESN'T WORK
+async function deleteCharAdv (username) {
+  const userCharacters = await Character.find({player:username})
+  Adventure.deleteMany({_id:{$in: userCharacters.adventures}})
 }
