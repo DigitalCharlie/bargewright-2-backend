@@ -4,6 +4,8 @@ const Adventure = require('../models/Adventure')
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
+const {deleteChar} = require('./characters')
+
 module.exports = {
   create,
   login,
@@ -88,8 +90,12 @@ async function getAllChars(req,res) {
 
 async function deleteUser (req,res) {
 	try {
-    await deleteCharAdv(req.params.username)
-    await Character.deleteMany({player: req.params.username})
+    // await deleteCharAdv(req.params.username)
+    // await Character.deleteMany({player: req.params.username})
+    const userCharacters = await Character.find({player:username})
+    await userCharacters.forEach( async (character) => {
+      deleteChar(character._id)
+    })
     const deletedUser = await deleteActualUser(req)
 		res.status(200).json(deletedUser);
 	} catch (err) {
