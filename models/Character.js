@@ -23,7 +23,11 @@ const characterSchema = new Schema({
     adventures: [{
         type:Schema.Types.ObjectId, 
         ref:'Adventure'
-      }]  
+    }],
+        magicItems: [{
+        type:Schema.Types.ObjectId, 
+        ref:'MagicItem'
+    }]    
 })
 
 // THIS DOESN'T CURRENTLY WORK EITHER -- IT DOESN'T SEEM TO REGISTER THE DOCUMENT STUFF

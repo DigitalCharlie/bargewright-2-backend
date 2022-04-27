@@ -8,9 +8,14 @@ const magicItemSchema = new Schema({
     name:String,
     effects:String,
     flavor:String,
-    lost: {
-        type:Boolean,
-        default: false
+    itemCategory: {
+        type:String,
+        enum:['scroll', 'potion', 'permanent', 'consumable']
+    },
+    status: {
+        type:String,
+        enum:['owned', 'destroyed', 'traded'],
+        default: 'owned'
     }
 })
 

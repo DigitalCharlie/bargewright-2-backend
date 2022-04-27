@@ -15,7 +15,12 @@ const advSchema = new Schema({
     levelGain:Number,
     notes:String,
     magicItemNotes:String,
-    healingPotions: Number
+    healingPotions: Number,
+    magicItems: [{
+        type:Schema.Types.ObjectId, 
+        ref:'MagicItem'
+    }],
+    magicItemsFound:Number
 })
 
 module.exports = mongoose.model('Adventure', advSchema);
