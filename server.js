@@ -15,7 +15,7 @@ app.use('/', require('./routes/home'));
 app.use('/user/', require('./routes/user'));
 app.use('/user/:username/character', require('./routes/character'));
 app.use('/user/:username/character/:charId/adventure', require('./routes/adventures'));
-app.use('/user/:username/character/:charId/magicItem', require('./routes/magicitems'));
+app.use('/user/:username/character/:charId/magicitem', require('./routes/magicitems'));
 
 
 

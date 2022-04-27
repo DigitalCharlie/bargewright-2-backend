@@ -34,5 +34,8 @@ router.get('/:id', charCtrl.show)
 // ALL Adventures
 router.get('/:id/adventure/all', charCtrl.getAllAdv)
 
+// ALL Magic Items
+router.get('/:id/magicitem/all', charCtrl.getAllMagicItems)
+
 
 module.exports = router;

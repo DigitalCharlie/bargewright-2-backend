@@ -8,6 +8,8 @@ const magicItemSchema = new Schema({
     name:String,
     effects:String,
     flavor:String,
+    rarity:String,
+    attunement:Boolean,
     itemCategory: {
         type:String,
         enum:['scroll', 'potion', 'permanent', 'consumable']

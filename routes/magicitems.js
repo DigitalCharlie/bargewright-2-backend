@@ -19,10 +19,13 @@ router.post('/new', magicItemCtrl.createNew);
 // /user/:username/character/:character._id/magicitems/magicitem._id
 
 // DELETE
+router.delete('/:id', magicItemCtrl.deleteMagicItem)
 
 // UPDATE
+router.put('/:id/edit', magicItemCtrl.update)
 
 // SHOW
+router.get('/:id', magicItemCtrl.show);
 
 
 module.exports = router;

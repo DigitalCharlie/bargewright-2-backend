@@ -1,6 +1,7 @@
 const Character = require('../models/Character')
 const Adventure = require('../models/Adventure')
 const User = require('../models/User');
+const MagicItem = require('../models/MagicItem')
 
 
 module.exports = {
@@ -8,6 +9,7 @@ module.exports = {
 	show,
 	update,
 	getAllAdv,
+	getAllMagicItems,
 	deleteChar,
 	test
 };
@@ -46,6 +48,17 @@ async function getAllAdv(req,res) {
 	try {
 		const allAdv = await Adventure.find({character: req.params.id});
 		res.status(200).json(allAdv);
+	} catch (e) {
+		res.status(400).json(e);
+	}
+}
+
+// GET ALL MAGIC ITEMS
+
+async function getAllMagicItems(req,res) {
+	try {
+		const allMagicItems = await MagicItem.find({character: req.params.id});
+		res.status(200).json(allMagicItems);
 	} catch (e) {
 		res.status(400).json(e);
 	}
