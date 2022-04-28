@@ -2,7 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const advSchema = new Schema({
-    character: String,
+    character: {
+        type:Schema.Types.ObjectId, 
+        ref:'Character'
+    },
     adventureName: {
         type: String,
         required: true

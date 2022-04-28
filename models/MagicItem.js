@@ -2,8 +2,14 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const magicItemSchema = new Schema({
-    character: String,
-    adventureFound:String,
+    character: {
+        type:Schema.Types.ObjectId, 
+        ref:'Character'
+    },
+    adventureFound: {
+        type:Schema.Types.ObjectId, 
+        ref:'Adventure'
+    },    
     downtimeActivity:String,
     name:String,
     effects:String,

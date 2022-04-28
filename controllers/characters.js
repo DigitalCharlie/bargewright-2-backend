@@ -70,7 +70,9 @@ async function getAllMagicItems(req,res) {
 async function deleteChar (req, res) {
 	try {
 		const deletedAdventures = await Adventure.deleteMany({character: req.params.id})
+		const deletedMagicItems = await MagicItem.deleteMany({character: req.params.id})
 		console.log(deletedAdventures)
+		console.log(deletedMagicItems)
 		const deletedChar = await Character.deleteOne({_id: req.params.id})
 		res.status(200).json(deletedChar);
 	} catch (err) {

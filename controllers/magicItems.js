@@ -13,7 +13,7 @@ module.exports = {
 // SHOW
 async function show (req,res) {
 	try {
-		const magicItem = await MagicItem.findById(req.params.id);
+		const magicItem = await MagicItem.findById(req.params.id).populate('character');
 		res.status(200).json(magicItem);
 	} catch (e) {
 		res.status(400).json(e);

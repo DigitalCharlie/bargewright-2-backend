@@ -24,7 +24,7 @@ const characterSchema = new Schema({
         type:Schema.Types.ObjectId, 
         ref:'Adventure'
     }],
-        magicItems: [{
+    magicItems: [{
         type:Schema.Types.ObjectId, 
         ref:'MagicItem'
     }]    
