@@ -12,7 +12,8 @@ module.exports = {
   checkToken,
   testDb,
   getAllChars,
-  deleteUser
+  deleteUser,
+  update
 };
 
 // AUTH
@@ -77,7 +78,7 @@ function createJWT(user) {
 
 async function getAllChars(req,res) {
 	try {
-		const allChars = await Character.find({player: req.params.username});
+		const allChars = await Character.find({player: req.params.username}).populate('adventures');
 		res.status(200).json(allChars);
 	} catch (e) {
 		res.status(400).json(e);
@@ -121,4 +122,13 @@ async function deleteActualUser (req) {
 async function deleteCharAdv (username) {
   const userCharacters = await Character.find({player:username})
   Adventure.deleteMany({_id:{$in: userCharacters.adventures}})
+}
+
+async function update (req,res) {
+	try {
+		const editedUser = await User.findOneAndUpdate({username: req.params.username}, req.body);
+		res.status(200).json(editedUser);
+	} catch (e) {
+		res.status(400).json(e);
+	}
 }

@@ -46,7 +46,7 @@ async function update (req,res) {
 
 async function getAllAdv(req,res) {
 	try {
-		const allAdv = await Adventure.find({character: req.params.id});
+		const allAdv = await Adventure.find({character: req.params.id}).populate('magicItems');
 		res.status(200).json(allAdv);
 	} catch (e) {
 		res.status(400).json(e);

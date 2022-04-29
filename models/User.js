@@ -22,7 +22,11 @@ const userSchema = new Schema({
   characters: [{
     type:Schema.Types.ObjectId, 
     ref:'Character'
-  }]  
+  }],
+  welcomeMessage: {
+    type:String,
+    default: "Click on any of your characters to view their details, or use the quicklinks to go directly to log a new adventure or downtime activity for them. \r\n \r\nClicking on any of the table headings will sort your characters by that category, and clicking it a second time will reverse the sort. The same is true on your character's individual pages."
+  },
 }, {
   timestamps: true,
   toJSON: {
