@@ -26,7 +26,7 @@ async function createNew (req,res) {
 
 async function show (req,res) {
 	try {
-		const char = await Character.findById(req.params.id);
+		const char = await Character.findById(req.params.id).populate('adventures');
 		res.status(200).json(char);
 	} catch (e) {
 		res.status(400).json(e);
@@ -46,7 +46,7 @@ async function update (req,res) {
 
 async function getAllAdv(req,res) {
 	try {
-		const allAdv = await Adventure.find({character: req.params.id}).populate('magicItems');
+		const allAdv = await Adventure.find({character: req.params.id}).populate('magicItems')
 		res.status(200).json(allAdv);
 	} catch (e) {
 		res.status(400).json(e);
@@ -57,7 +57,7 @@ async function getAllAdv(req,res) {
 
 async function getAllMagicItems(req,res) {
 	try {
-		const allMagicItems = await MagicItem.find({character: req.params.id});
+		const allMagicItems = await MagicItem.find({character: req.params.id}).populate('adventureFound');
 		res.status(200).json(allMagicItems);
 	} catch (e) {
 		res.status(400).json(e);

@@ -18,7 +18,7 @@ const magicItemSchema = new Schema({
     attunement:Boolean,
     itemCategory: {
         type:String,
-        enum:['scroll', 'potion', 'permanent', 'consumable']
+        enum:['Scroll', 'Potion', 'Permanent', 'Consumable']
     },
     status: {
         type:String,

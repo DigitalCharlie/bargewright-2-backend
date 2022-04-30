@@ -14,7 +14,7 @@ const advCtrl = require('../controllers/adventures')
 
 // CREATE
 
-router.post('/new', advCtrl.createNew);
+router.post('/', advCtrl.createNew);
 
 
 // SPECIFIC ADVENTURE ROUTES
@@ -25,7 +25,7 @@ router.delete('/:id', advCtrl.deleteAdv)
 
 
 // UPDATE
-router.put('/:id/edit', advCtrl.update)
+router.put('/:id/', advCtrl.update)
 
 // SHOW
 router.get('/:id', advCtrl.show);

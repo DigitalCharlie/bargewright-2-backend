@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const Adventure = require('./Adventure')
 
+
 const characterSchema = new Schema({
     player: String,
     name: {
@@ -20,6 +21,10 @@ const characterSchema = new Schema({
     notes:String,
     levelAdjust: Number,
     healthPotionAdjust: Number,
+    setting: {
+        type:String,
+        default:'Forgotten Realms'
+    },
     adventures: [{
         type:Schema.Types.ObjectId, 
         ref:'Adventure'
@@ -27,7 +32,8 @@ const characterSchema = new Schema({
     magicItems: [{
         type:Schema.Types.ObjectId, 
         ref:'MagicItem'
-    }]    
+    }],
+    levelTotal:Number
 })
 
 // THIS DOESN'T CURRENTLY WORK EITHER -- IT DOESN'T SEEM TO REGISTER THE DOCUMENT STUFF
@@ -37,5 +43,14 @@ const characterSchema = new Schema({
     // const deletedAdventures = Adventure.deleteMany({character: this._id})
     // console.log(deletedAdventures)
 // })
+
+// // HOW CAN I GET THIS TO WORK?
+characterSchema.pre('save', async function(next) {
+    await this.populate('adventures')
+    let advLevels = this.adventures.reduce((acc, adv) => acc + parseInt(adv.levelGain), 1)
+    let currentLevel = this.levelAdjust + parseInt(advLevels)
+    this.levelTotal = currentLevel
+    return next();
+});
 
 module.exports = mongoose.model('Character', characterSchema);

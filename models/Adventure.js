@@ -23,7 +23,8 @@ const advSchema = new Schema({
         type:Schema.Types.ObjectId, 
         ref:'MagicItem'
     }],
-    magicItemsFound:Number
+    magicItemsFound:Number,
+    storyAwards: Array,
 })
 
 module.exports = mongoose.model('Adventure', advSchema);

@@ -11,7 +11,7 @@ module.exports = {
 
 async function show (req,res) {
 	try {
-		const adv = await Adventure.findById(req.params.id).populate('character');
+		const adv = await Adventure.findById(req.params.id).populate('character').populate('magicItems');
 		res.status(200).json(adv);
 	} catch (e) {
 		res.status(400).json(e);
@@ -31,6 +31,8 @@ async function createNew (req,res) {
 async function update (req,res) {
 	try {
 		const adv = await Adventure.findByIdAndUpdate(req.params.id, req.body);
+		const char = await Character.findById(adv.character)
+		char.save()
 		res.status(200).json(adv);
 	} catch (e) {
 		res.status(400).json(e);

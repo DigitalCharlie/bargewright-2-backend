@@ -13,7 +13,7 @@ router.get('/test', magicItemCtrl.test);
 // INDEX
 
 // CREATE
-router.post('/new', magicItemCtrl.createNew);
+router.post('/', magicItemCtrl.createNew);
 
 // SPECIFIC MAGIC ITEM ROUTES
 // /user/:username/character/:character._id/magicitems/magicitem._id
@@ -22,7 +22,7 @@ router.post('/new', magicItemCtrl.createNew);
 router.delete('/:id', magicItemCtrl.deleteMagicItem)
 
 // UPDATE
-router.put('/:id/edit', magicItemCtrl.update)
+router.put('/:id/', magicItemCtrl.update)
 
 // SHOW
 router.get('/:id', magicItemCtrl.show);

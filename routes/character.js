@@ -14,7 +14,7 @@ const charCtrl = require('../controllers/characters')
 
 // CREATE
 
-router.post('/new', charCtrl.createNew);
+router.post('/', charCtrl.createNew);
 
 
 // SPECIFIC CHARACTER ROUTES
@@ -25,7 +25,7 @@ router.delete('/:id', charCtrl.deleteChar)
 
 
 // UPDATE
-router.put('/:id/edit', charCtrl.update)
+router.put('/:id/', charCtrl.update)
 
 
 // SHOW
