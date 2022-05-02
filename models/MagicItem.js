@@ -15,6 +15,7 @@ const magicItemSchema = new Schema({
     effects:String,
     flavor:String,
     rarity:String,
+    charges:Number,
     attunement:Boolean,
     itemCategory: {
         type:String,
@@ -22,7 +23,7 @@ const magicItemSchema = new Schema({
     },
     status: {
         type:String,
-        enum:['owned', 'destroyed', 'traded'],
+        enum:['owned', 'destroyed', 'traded', 'consumed'],
         default: 'owned'
     }
 })
