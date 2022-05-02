@@ -19,7 +19,7 @@ async function createNew (req,res) {
 
 async function show (req,res) {
 	try {
-		const downtime = await Downtime.findById(req.params.id);
+		const downtime = await Downtime.findById(req.params.id).populate('magicItemGained').populate('character');
 		res.status(200).json(downtime);
 	} catch (e) {
 		res.status(400).json(e);

@@ -1,6 +1,7 @@
 const Adventure = require('../models/Adventure')
 const Character = require('../models/Character')
 const MagicItem = require('../models/MagicItem')
+const DowntimeActivity = require('../models/DowntimeActivity')
 
 module.exports = {
 	show,
@@ -26,6 +27,7 @@ async function createNew (req,res) {
 		const newMagicItem = await MagicItem.create(req.body);
 		addMagicToChar(newMagicItem)
 		if(newMagicItem.adventureFound) addMagicToAdv(newMagicItem)
+		if(newMagicItem.downtimeActivity) addMagicToDowntime(newMagicItem)
 		res.status(200).json(newMagicItem);
 	} catch (e) {
 		res.status(400).json(e);
@@ -81,4 +83,12 @@ async function addMagicToAdv (createdMagicItem) {
 	const adv = await Adventure.findById(createdMagicItem.adventureFound)
 	adv.magicItems.push(createdMagicItem._id)
 	adv.save()
+}
+
+// Add new magic item to downtime
+
+async function addMagicToDowntime (createdMagicItem) {
+	const downtime = await DowntimeActivity.findById(createdMagicItem.downtimeActivity)
+	downtime.magicItemGained = createdMagicItem._id
+	downtime.save()
 }
