@@ -52,6 +52,8 @@ async function test (req,res) {
 async function deleteAdv (req,res) {
 	try {
 		const deletedAdv = await Adventure.findByIdAndDelete(req.params.id)
+		const char = await Character.findById(deletedAdv.character)
+		char.save()
 		res.status(200).json(deletedAdv);
 	} catch (err) {
         res.status(400).json(err)

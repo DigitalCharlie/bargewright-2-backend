@@ -3,7 +3,6 @@ const Adventure = require('../models/Adventure')
 const User = require('../models/User');
 const MagicItem = require('../models/MagicItem')
 
-
 module.exports = {
 	createNew,
 	show,

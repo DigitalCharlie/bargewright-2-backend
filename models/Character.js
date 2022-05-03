@@ -33,6 +33,10 @@ const characterSchema = new Schema({
         type:Schema.Types.ObjectId, 
         ref:'MagicItem'
     }],
+    downtimeActivities: [{
+        type:Schema.Types.ObjectId, 
+        ref:'DowntimeActivity'
+    }],
     levelTotal:Number
 })
 
