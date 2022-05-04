@@ -2,21 +2,23 @@ require('dotenv').config()
 require('./config/connection');
 const express = require('express')
 const app = express()
-const cors = require('cors')
+const cors = require('cors');
 const PORT = process.env.PORT || 8080
 
 // MIDDLEWARE
 app.use(cors());
 app.use(express.json());
 app.use(require('./config/checkToken'));
+const ensureLoggedIn = require('./config/ensureLoggedIn');
+const ensureAuthorized = require('./config/ensureAuthorized');
 
 // ROUTING
 app.use('/', require('./routes/home'));
-app.use('/user/', require('./routes/user'));
-app.use('/user/:username/character', require('./routes/character'));
-app.use('/user/:username/character/:charId/adventure', require('./routes/adventures'));
-app.use('/user/:username/character/:charId/magicitem', require('./routes/magicitems'));
-app.use('/user/:username/character/:charId/downtime', require('./routes/downtime'));
+app.use('/user/', ensureLoggedIn, require('./routes/user'));
+app.use('/user/:username/character', ensureLoggedIn, ensureAuthorized, require('./routes/character'));
+app.use('/user/:username/character/:charId/adventure', ensureLoggedIn, ensureAuthorized, require('./routes/adventures'));
+app.use('/user/:username/character/:charId/magicitem', ensureLoggedIn, ensureAuthorized, require('./routes/magicitems'));
+app.use('/user/:username/character/:charId/downtime', ensureLoggedIn, ensureAuthorized, require('./routes/downtime'));
 
 
 

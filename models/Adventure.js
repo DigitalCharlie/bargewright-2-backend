@@ -27,4 +27,13 @@ const advSchema = new Schema({
     storyAwards: Array,
 })
 
+// // HOW CAN I GET THIS TO WORK?
+advSchema.pre('save', async function(next) {
+    this.storyAwards.forEach((award) => {
+        award.advId=this._id
+        award.advName=this.adventureName
+    })
+    return next();
+});
+
 module.exports = mongoose.model('Adventure', advSchema);
