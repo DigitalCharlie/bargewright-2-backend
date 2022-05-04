@@ -1,5 +1,6 @@
 const Downtime = require('../models/DowntimeActivity')
 const Character = require('../models/Character')
+const MagicItem = require('../models/MagicItem')
 
 module.exports = {
 	createNew,
@@ -13,6 +14,9 @@ async function createNew (req,res) {
 	try {
 		const newDowntime = await Downtime.create(req.body);
 		addDowntimeToChar(newDowntime)
+		if (req.body.magicItemLost) {
+			const editedMagicItem = await MagicItem.findByIdAndUpdate(req.body.magicItemLost, {status:'traded'})
+		}
 		res.status(200).json(newDowntime);
 	} catch (e) {
 		res.status(400).json(e);
@@ -21,7 +25,7 @@ async function createNew (req,res) {
 
 async function show (req,res) {
 	try {
-		const downtime = await Downtime.findById(req.params.id).populate('magicItemGained').populate('character');
+		const downtime = await Downtime.findById(req.params.id).populate('magicItemGained').populate('character').populate('magicItemLost');
 		res.status(200).json(downtime);
 	} catch (e) {
 		res.status(400).json(e);

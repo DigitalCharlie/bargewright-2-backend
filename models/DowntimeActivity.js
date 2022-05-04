@@ -21,7 +21,6 @@ const downtimeSchema = new Schema({
         ref:'MagicItem'
     },
     healingPotions: Number,
-    dmHoursUsed:Number,
     notes: String
 })
 

@@ -37,5 +37,8 @@ router.get('/:id/adventure/all', charCtrl.getAllAdv)
 // ALL Magic Items
 router.get('/:id/magicitem/all', charCtrl.getAllMagicItems)
 
+// ALL Downtime
+router.get('/:id/downtime/all', charCtrl.getAllDowntime)
+
 
 module.exports = router;

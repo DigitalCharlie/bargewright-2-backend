@@ -2,6 +2,7 @@ const Character = require('../models/Character')
 const Adventure = require('../models/Adventure')
 const User = require('../models/User');
 const MagicItem = require('../models/MagicItem')
+const Downtime = require('../models/DowntimeActivity')
 
 module.exports = {
 	createNew,
@@ -9,6 +10,7 @@ module.exports = {
 	update,
 	getAllAdv,
 	getAllMagicItems,
+	getAllDowntime,
 	deleteChar,
 	test
 };
@@ -58,6 +60,16 @@ async function getAllMagicItems(req,res) {
 	try {
 		const allMagicItems = await MagicItem.find({character: req.params.id}).populate('adventureFound');
 		res.status(200).json(allMagicItems);
+	} catch (e) {
+		res.status(400).json(e);
+	}
+}
+
+// GET ALL DOWNTIME
+async function getAllDowntime(req,res) {
+	try {
+		const allDowntime = await Downtime.find({character: req.params.id}).populate('magicItemGained').populate('magicItemLost');
+		res.status(200).json(allDowntime);
 	} catch (e) {
 		res.status(400).json(e);
 	}
