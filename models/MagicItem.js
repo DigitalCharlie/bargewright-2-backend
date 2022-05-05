@@ -12,7 +12,7 @@ const magicItemSchema = new Schema({
     },    
     downtimeActivity:{
         type:Schema.Types.ObjectId, 
-        ref:'DowntimeActivity'
+        ref:'Downtime'
     },    
     name:String,
     effects:String,

@@ -58,7 +58,7 @@ async function getAllAdv(req,res) {
 
 async function getAllMagicItems(req,res) {
 	try {
-		const allMagicItems = await MagicItem.find({character: req.params.id}).populate('adventureFound');
+		const allMagicItems = await MagicItem.find({character: req.params.id}).populate(['adventureFound', 'downtimeActivity']);
 		res.status(200).json(allMagicItems);
 	} catch (e) {
 		res.status(400).json(e);

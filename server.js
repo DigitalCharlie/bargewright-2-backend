@@ -14,8 +14,8 @@ const ensureAuthorized = require('./config/ensureAuthorized');
 
 // ROUTING
 app.use('/', require('./routes/home'));
-app.use('/user/', ensureLoggedIn, require('./routes/user'));
-app.use('/user/:username/character', ensureLoggedIn, ensureAuthorized, require('./routes/character'));
+app.use('/user/', ensureLoggedIn, ensureAuthorized, require('./routes/user'));
+app.use('/user/:username/character', require('./routes/character'));
 app.use('/user/:username/character/:charId/adventure', ensureLoggedIn, ensureAuthorized, require('./routes/adventures'));
 app.use('/user/:username/character/:charId/magicitem', ensureLoggedIn, ensureAuthorized, require('./routes/magicitems'));
 app.use('/user/:username/character/:charId/downtime', ensureLoggedIn, ensureAuthorized, require('./routes/downtime'));
