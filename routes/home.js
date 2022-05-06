@@ -17,6 +17,9 @@ router.get('/', (req,res) => {
 // POST /
 router.post('/', usersCtrl.create);
 
+// check is user exists
+router.get('/exists/:username', usersCtrl.userExists)
+
 // POST /login
 router.post('/login', usersCtrl.login);
 

@@ -13,6 +13,7 @@ module.exports = {
   testDb,
   getAllChars,
   deleteUser,
+  userExists,
   update
 };
 
@@ -131,4 +132,14 @@ async function update (req,res) {
 	} catch (e) {
 		res.status(400).json(e);
 	}
+}
+
+// User exists?
+async function userExists (req,res) {
+  try {
+    const userExists = await User.exists({username: req.params.username})
+		res.status(200).json(userExists);
+  } catch (e) {
+    res.status(400).json(e);
+  }
 }
