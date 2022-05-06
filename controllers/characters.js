@@ -27,7 +27,7 @@ async function createNew (req,res) {
 
 async function show (req,res) {
 	try {
-		const char = await Character.findById(req.params.id).populate('adventures');
+		const char = await Character.findById(req.params.id).populate(['adventureFound', 'downtimeActivity']);
 		res.status(200).json(char);
 	} catch (e) {
 		res.status(400).json(e);
