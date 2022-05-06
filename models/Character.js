@@ -35,7 +35,7 @@ const characterSchema = new Schema({
     }],
     downtimeActivities: [{
         type:Schema.Types.ObjectId, 
-        ref:'DowntimeActivity'
+        ref:'Downtime'
     }],
     levelTotal:Number
 })
